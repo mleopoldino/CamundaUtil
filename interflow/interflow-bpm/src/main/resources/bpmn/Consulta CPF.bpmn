@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.11.3">
+  <bpmn:process id="ConsultaCPF" name="Consulta CPF" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="CPF" label="CPF" type="long">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="nascimento" label="Data de nascimento" type="date">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_060ng98</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_060ng98" sourceRef="StartEvent_1" targetRef="Task_0azbr20" />
+    <bpmn:sequenceFlow id="SequenceFlow_05qivqb" sourceRef="Task_0azbr20" targetRef="Task_1mfvi9n" />
+    <bpmn:endEvent id="EndEvent_1m5s1bd">
+      <bpmn:incoming>SequenceFlow_0kjzfzj</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0kjzfzj" sourceRef="Task_1mfvi9n" targetRef="EndEvent_1m5s1bd" />
+    <bpmn:serviceTask id="Task_0azbr20" name="Consultar CPF na receita" camunda:class="br.com.interfile.demo.ConsultaCpf">
+      <bpmn:incoming>SequenceFlow_060ng98</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_05qivqb</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Task_1mfvi9n" name="Resultado da consulta" camunda:assignee="admin">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="CPF" label="CPF" type="long">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="nascimento" label="Data de nascimento" type="date">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="nome" label="Nome" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="situacao" label="Situação cadastral" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="codControle" label="Código de controle" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_05qivqb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0kjzfzj</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ConsultaCPF">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_060ng98_di" bpmnElement="SequenceFlow_060ng98">
+        <di:waypoint xsi:type="dc:Point" x="209" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="264" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="236.5" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_05qivqb_di" bpmnElement="SequenceFlow_05qivqb">
+        <di:waypoint xsi:type="dc:Point" x="364" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="408" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="386" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1m5s1bd_di" bpmnElement="EndEvent_1m5s1bd">
+        <dc:Bounds x="548" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="566" y="142" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0kjzfzj_di" bpmnElement="SequenceFlow_0kjzfzj">
+        <di:waypoint xsi:type="dc:Point" x="508" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="548" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="528" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0npsjbi_di" bpmnElement="Task_0azbr20">
+        <dc:Bounds x="264" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0egzbgi_di" bpmnElement="Task_1mfvi9n">
+        <dc:Bounds x="408" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
