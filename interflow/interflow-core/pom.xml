@@ -22,7 +22,7 @@
 
 		<!-- Hibernate -->
 		<!-- <hibernate.version>5.2.13.Final</hibernate.version> -->
-		<hibernate.version>4.3.11.Final</hibernate.version>
+		<hibernate.version>5.3.20.Final</hibernate.version>
 
 		<!-- Logging -->
 		<log4j.version>2.1</log4j.version>
